@@ -1,0 +1,53 @@
+name: Promote v0.3.7 to normal release
+
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/promote-v0.3.7.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Mark v0.3.7 as the latest normal release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          import urllib.request
+
+          base = "https://api.github.com/repos/" + os.environ["GITHUB_REPOSITORY"]
+          headers = {
+              "Authorization": "Bearer " + os.environ["GITHUB_TOKEN"],
+              "Accept": "application/vnd.github+json",
+              "X-GitHub-Api-Version": "2022-11-28",
+              "User-Agent": "FramegenDllTester-release-promotion",
+          }
+          request = urllib.request.Request(base + "/releases/tags/v0.3.7", headers=headers)
+          with urllib.request.urlopen(request, timeout=60) as response:
+              release = json.load(response)
+          if release["tag_name"] != "v0.3.7" or release["id"] != 422553263:
+              raise RuntimeError("Unexpected release; refusing to modify it")
+          body = release["body"].replace("# Framegen DLL Tester 0.3.7 preview", "# Framegen DLL Tester 0.3.7").replace("This preview includes", "This release includes")
+          data = json.dumps({
+              "name": "Framegen DLL Tester 0.3.7",
+              "prerelease": False,
+              "draft": False,
+              "make_latest": "true",
+              "body": body,
+          }).encode()
+          headers["Content-Type"] = "application/json"
+          request = urllib.request.Request(base + "/releases/" + str(release["id"]), data=data, headers=headers, method="PATCH")
+          with urllib.request.urlopen(request, timeout=60) as response:
+              updated = json.load(response)
+          if updated["prerelease"] or updated["draft"]:
+              raise RuntimeError("Release promotion was not applied")
+          print("Published normal release:", updated["html_url"])
+          PY
