@@ -1,0 +1,11 @@
+private/
+dist/
+.release/
+*.user
+*.log
+*.csv
+*.dll
+settings.json
+trials/
+!downloads/FramegenDllTester.exe
+!downloads/FramegenDllTester-Portable-*.zip

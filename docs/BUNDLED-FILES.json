@@ -1,0 +1,287 @@
+{
+  "Version": "0.2.3-local",
+  "PrivateOnly": true,
+  "Candidates": [
+    {
+      "Id": "RE4-D3D12",
+      "Label": "NVSmooth30 - D3D12 (no FPS cap)",
+      "Dll": "nvsmooth-prepared.dll",
+      "Target": "version.dll",
+      "Config": "",
+      "Profile": "RE4-D3D12",
+      "Family": "NVSmooth30"
+    },
+    {
+      "Id": "DIAGNOSTIC",
+      "Label": "NVSmooth30 - diagnostics (no FPS cap)",
+      "Dll": "nvsmooth-prepared.dll",
+      "Target": "version.dll",
+      "Config": "",
+      "Profile": "DIAGNOSTIC",
+      "Family": "NVSmooth30"
+    },
+    {
+      "Id": "sdli-310.9-version.dll",
+      "Label": "DLSSG for SM86 310.9 - version.dll",
+      "Dll": "sdli-310.9-version.dll",
+      "Target": "version.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.9-winmm.dll",
+      "Label": "DLSSG for SM86 310.9 - winmm.dll",
+      "Dll": "sdli-310.9-winmm.dll",
+      "Target": "winmm.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.9-dbghelp.dll",
+      "Label": "DLSSG for SM86 310.9 - dbghelp.dll",
+      "Dll": "sdli-310.9-dbghelp.dll",
+      "Target": "dbghelp.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.9-dinput8.dll",
+      "Label": "DLSSG for SM86 310.9 - dinput8.dll",
+      "Dll": "sdli-310.9-dinput8.dll",
+      "Target": "dinput8.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.9-dxgi.dll",
+      "Label": "DLSSG for SM86 310.9 - dxgi.dll",
+      "Dll": "sdli-310.9-dxgi.dll",
+      "Target": "dxgi.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.9-d3d12.dll",
+      "Label": "DLSSG for SM86 310.9 - d3d12.dll",
+      "Dll": "sdli-310.9-d3d12.dll",
+      "Target": "d3d12.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.1-version.dll",
+      "Label": "DLSSG for SM86 310.1 - version.dll",
+      "Dll": "sdli-310.1-version.dll",
+      "Target": "version.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.1-winmm.dll",
+      "Label": "DLSSG for SM86 310.1 - winmm.dll",
+      "Dll": "sdli-310.1-winmm.dll",
+      "Target": "winmm.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.1-dbghelp.dll",
+      "Label": "DLSSG for SM86 310.1 - dbghelp.dll",
+      "Dll": "sdli-310.1-dbghelp.dll",
+      "Target": "dbghelp.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.1-dinput8.dll",
+      "Label": "DLSSG for SM86 310.1 - dinput8.dll",
+      "Dll": "sdli-310.1-dinput8.dll",
+      "Target": "dinput8.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.1-dxgi.dll",
+      "Label": "DLSSG for SM86 310.1 - dxgi.dll",
+      "Dll": "sdli-310.1-dxgi.dll",
+      "Target": "dxgi.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "sdli-310.1-d3d12.dll",
+      "Label": "DLSSG for SM86 310.1 - d3d12.dll",
+      "Dll": "sdli-310.1-d3d12.dll",
+      "Target": "d3d12.dll",
+      "Config": "dlssg_sm86.ini",
+      "Profile": "DLSSG",
+      "Family": "DLSSG for SM86"
+    },
+    {
+      "Id": "d3d11-asi-dinput8.dll",
+      "Label": "NVSmooth30 D3D11 - ASI loader (dinput8.dll)",
+      "Dll": "ultimate-asi-loader.dll",
+      "Target": "dinput8.dll",
+      "Config": "",
+      "ExtraFiles": [
+        "FramegenLab.NVSmooth30.asi",
+        "dinput8.ini"
+      ],
+      "Profile": "D3D11-ASI",
+      "Family": "NVSmooth30-ASILoader"
+    },
+    {
+      "Id": "d3d11-asi-xinput1_3.dll",
+      "Label": "NVSmooth30 D3D11 - ASI loader (xinput1_3.dll)",
+      "Dll": "ultimate-asi-loader.dll",
+      "Target": "xinput1_3.dll",
+      "Config": "",
+      "ExtraFiles": [
+        "FramegenLab.NVSmooth30.asi",
+        "xinput1_3.ini"
+      ],
+      "Profile": "D3D11-ASI",
+      "Family": "NVSmooth30-ASILoader"
+    },
+    {
+      "Id": "d3d11-asi-winmm.dll",
+      "Label": "NVSmooth30 D3D11 - ASI loader (winmm.dll)",
+      "Dll": "ultimate-asi-loader.dll",
+      "Target": "winmm.dll",
+      "Config": "",
+      "ExtraFiles": [
+        "FramegenLab.NVSmooth30.asi",
+        "winmm.ini"
+      ],
+      "Profile": "D3D11-ASI",
+      "Family": "NVSmooth30-ASILoader"
+    }
+  ],
+  "Files": [
+    {
+      "Key": "nvsmooth-prepared.dll",
+      "Length": 79872,
+      "Sha256": "0bfdead0c48c00c8732a757703d27e6788c08bc71fe817d6a7630987838aa8dc",
+      "Origin": "Existing locally prepared NVSmooth30 binary; ItsAdeline upstream; private test only"
+    },
+    {
+      "Key": "dlssg_sm86.ini",
+      "Length": 287,
+      "Sha256": "aa690e4f0fc3df71a93f35ff1efe8182e72e203f7e4c6b8ba6cbcd17ffd845fd",
+      "Origin": "Existing local 0.3.5 INI; values preserved; comments removed"
+    },
+    {
+      "Key": "sdli-310.9-version.dll",
+      "Length": 30021920,
+      "Sha256": "c3934a09399f022504227c72df0bf8c0de55f9a08880dddde898c5262cefa838",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.9 / version.dll"
+    },
+    {
+      "Key": "sdli-310.9-winmm.dll",
+      "Length": 30033184,
+      "Sha256": "bc3cef25c1ccbbdccdd93db9fae845104bb6c71fd433240e26641881a7e46658",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.9 / winmm.dll"
+    },
+    {
+      "Key": "sdli-310.9-dbghelp.dll",
+      "Length": 30039840,
+      "Sha256": "dfe7f44baa68d237dfe040d4b4cfc9bd44b01e661f3051996db1144e6bb388cb",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.9 / dbghelp.dll"
+    },
+    {
+      "Key": "sdli-310.9-dinput8.dll",
+      "Length": 30021408,
+      "Sha256": "4fbad08bb9360a1cd1309a82586353484fe64b7220199344ab83fae308176c6b",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.9 / dinput8.dll"
+    },
+    {
+      "Key": "sdli-310.9-dxgi.dll",
+      "Length": 30021920,
+      "Sha256": "52e67020a725c74d5dee62aee4dc166a2f4e5c3adabf04ecab3005ab968fc24d",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.9 / dxgi.dll"
+    },
+    {
+      "Key": "sdli-310.9-d3d12.dll",
+      "Length": 30021920,
+      "Sha256": "64b7ecc3f6d70011feed8dfaa20ce500522e8b04170142e2a2000146b4d7ac71",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.9 / d3d12.dll"
+    },
+    {
+      "Key": "sdli-310.1-version.dll",
+      "Length": 27995424,
+      "Sha256": "4ba7fecc68e2229193757839f326176a4f0f4325baab3c324007e0ea844e4d17",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.1 / version.dll"
+    },
+    {
+      "Key": "sdli-310.1-winmm.dll",
+      "Length": 28006688,
+      "Sha256": "a62e669d2ceae7645cbafe98d1df69892ede07bf78166acf2185a8beb9843a85",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.1 / winmm.dll"
+    },
+    {
+      "Key": "sdli-310.1-dbghelp.dll",
+      "Length": 28013344,
+      "Sha256": "fc58ee19b315732821ea3216d4d360972c38ce076ebc7d730b3f601c0e5c4a2c",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.1 / dbghelp.dll"
+    },
+    {
+      "Key": "sdli-310.1-dinput8.dll",
+      "Length": 27994912,
+      "Sha256": "ed56447cefa8b5836ec39116db620c289cac783fba938a9740c7a1b845a6ffaa",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.1 / dinput8.dll"
+    },
+    {
+      "Key": "sdli-310.1-dxgi.dll",
+      "Length": 27995424,
+      "Sha256": "682e9a1318c5e2cb4ccf490c6cabfa2f119bf2f4793ced9c68ea56f3a21dc288",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.1 / dxgi.dll"
+    },
+    {
+      "Key": "sdli-310.1-d3d12.dll",
+      "Length": 27995424,
+      "Sha256": "1b6c39e4e2aa34e216d70d991ecb3d83eb6bdc01fa5e977a2e837f4433f77f2b",
+      "Origin": "Existing local sdli1995/dlssg_for_sm86 0.3.5 / 310.1 / d3d12.dll"
+    },
+    {
+      "Key": "FramegenLab.NVSmooth30.asi",
+      "Length": 79872,
+      "Sha256": "18ed37a0f333242bb27f649c3ced3dc0cc081023a12e2bdca982b3d31aaa0fbf",
+      "Origin": "Exact pre-RE4-patch NVSmooth30 image recovered by reverting the known six-byte patch and original zero PE checksum; full original SHA-256 verified"
+    },
+    {
+      "Key": "ultimate-asi-loader.dll",
+      "Length": 2431208,
+      "Sha256": "a1249114146c1d004335b34349df90d0714b19bbd61e671232931d930cb9168c",
+      "Origin": "ThirteenAG/Ultimate-ASI-Loader v10.0.0 official NoPDB x64 release; archive SHA-256 3385950d6af79257d18420b1d6904bc47480170b3dabe345f8c1339d0a49183f"
+    },
+    {
+      "Key": "dinput8.ini",
+      "Length": 151,
+      "Sha256": "e852ff2483a24dd5984449dd24a4bec297f2e7202b792901691028e535a467f8",
+      "Origin": "Tester ASI loader configuration: explicitly load FramegenLab.NVSmooth30.asi"
+    },
+    {
+      "Key": "xinput1_3.ini",
+      "Length": 151,
+      "Sha256": "e852ff2483a24dd5984449dd24a4bec297f2e7202b792901691028e535a467f8",
+      "Origin": "Tester ASI loader configuration: explicitly load FramegenLab.NVSmooth30.asi"
+    },
+    {
+      "Key": "winmm.ini",
+      "Length": 151,
+      "Sha256": "e852ff2483a24dd5984449dd24a4bec297f2e7202b792901691028e535a467f8",
+      "Origin": "Tester ASI loader configuration: explicitly load FramegenLab.NVSmooth30.asi"
+    }
+  ]
+}

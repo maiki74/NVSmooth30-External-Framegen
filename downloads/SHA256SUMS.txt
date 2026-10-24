@@ -1,0 +1,2 @@
+d0a5a3e46ba8aadcad8439937e236d71cdd13eb2334c2726d90a25af1f4d87c7  FramegenDllTester.exe
+87edfae75599468177543aaa570ad27ca063b62cef52924fe31f33df7c9f5981  FramegenDllTester-Portable-v0.3.7.zip

@@ -1,0 +1,81 @@
+﻿FRAMEGEN DLL TESTER 0.3.7 - PREVIEW
+
+Open FramegenDllTester.exe from the portable ZIP.
+In a repository checkout, open downloads\FramegenDllTester.exe.
+
+1. Choose game... -> select the game EXE or its recognized Unreal launcher.
+2. Start game -> DLL and launch settings are applied automatically.
+3. No, try next -> game closes, originals are restored, next option is ready.
+4. Start game again -> test that next option.
+5. Yes, it worked -> save this option and stop searching. You can keep playing.
+6. Stop + restore -> close the game and restore originals.
+7. Reset tests -> close / restore, return to option 1, keep the selected game.
+   Previous trial history is kept; the saved working choice is cleared.
+8. Remove test DLL -> close the current test, remove its tracked files and restore
+   original DLLs where they existed. Also disables Steam setup and removes its
+   tracked helpers. Game, option and history are kept.
+
+RENDERER DETECTION: Recognized Unreal launchers provide their embedded target.
+DLLs are staged beside that renderer; Start keeps the original launcher.
+Older bootstrap-folder installations are restored before the target is migrated.
+
+GRAPHICS API: Automatic reads the renderer's normal and delayed imports.
+Recent, exact-path-matched Unreal crash records can suggest the last-used API.
+Historical evidence and import hints are labelled; neither guarantees the next run.
+DX11 tries proxy names imported by the renderer first.
+Packed Godot 4 EXEs are recognized through bounded embedded project metadata.
+A matching recent project log can suggest Vulkan or OpenGL. Vulkan gets one
+experimental test; OpenGL has no bundled route. Unknown Godot rendering only
+offers the Vulkan test with an explicit unconfirmed-runtime message.
+Manual DX12 / DX11 / Vulkan selects the tests, not the game's renderer.
+Automatic DX9 uses an experimental DXVK -> Vulkan route; DX10 has no bundled route. Vulkan uses one experimental local integration.
+SpartanPort opens through its normal launcher with the saved boot configuration.
+The Vulkan DLLs are included in the EXE and stay in the app's own cache.
+Start Vulkan games from this app; no persistent normal-launch toggle is offered.
+Vulkan v2 can relax VSync for that launch; saved display settings stay unchanged.
+The tested NVIDIA driver and SpartanPort launcher builds are hash-guarded.
+
+DIAGNOSIS: Details, logs and sources shows renderer / launcher paths and the
+current evidence. Finished trials save diagnosis.txt beside their original backups.
+The app distinguishes a missing renderer, an unobserved DLL and backend status.
+DLL loading or initialization is not proof of generated frames.
+
+FPS overlay... -> Use displayed FPS / Restore original overlay.
+Uses the already-installed RTSS PresentMon provider; no new download.
+Updates once per second and preserves the original application frametime graph.
+The average and 1% low use display data. No assumed FPS multiplier is applied.
+Windows may request administrator permission for the protected RTSS folder.
+
+KEEP FRAMEGEN SETUP INSTALLED (DirectX routes, off by default): keeps the setup installed so normal
+game launches can load it with the app closed; Steam is not required. NVSmooth30 settings are applied
+by an original small ASI helper inside the game process. Steam launch options
+and global Windows variables are unchanged. Start becomes Open game (Steam if recognized, selected EXE otherwise).
+Toggle OFF, Remove test DLL, Stop + restore or Reset tests uninstalls the setup.
+Closing the app leaves an explicitly enabled persistent setup installed.
+
+F1 = Yes. F2 = No. Available globally while an answer is expected.
+If a key is reserved by another app, use the buttons.
+
+15 native DLL / ASI images; 17 configured attempts filtered by graphics API.
+Confirmed D3D11: 3 ASI loader options. Confirmed D3D12: 14 options.
+No separate DLL selection or BAT needed.
+Launch settings are implemented directly in the game's environment.
+No FPS cap or forced VSync is enabled. The old JO.bat 30 FPS cap was removed.
+Installed Steam games receive their real App ID automatically from the library.
+
+Dark Souls Remastered: the owner reported 120 FPS in MSI Afterburner; the logs
+also show CreateSwapChainForHwnd 0x80070005. Generated frames need confirmation.
+The tested loader / ASI configuration remains available.
+
+If the game refuses to close, close it manually and restore before continuing.
+After an interrupted test, reopen the app and Restore interrupted test.
+On an anti-cheat error, STOP testing and restore the original files.
+
+Offline, unprotected sessions only. Real-game compatibility is not guaranteed.
+Third-party components retain their own terms; see THIRD_PARTY_NOTICES.md.
+
+Local data: %LOCALAPPDATA%\Framegen DLL Tester
+
+DX9 compatibility: RTSS Vulkan layer is disabled only in that launched process.
+RTSS itself stays running; saved settings are unchanged. Check the overlay in game.
+Failed graphics startup no longer discards valid recent UE3 backup logs.

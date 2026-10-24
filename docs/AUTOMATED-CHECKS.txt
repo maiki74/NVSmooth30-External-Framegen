@@ -1,0 +1,176 @@
+Framegen DLL Tester 0.3.7 - local automated verification
+2026-10-24T06:01:28.8034779Z
+PASS Static PE inspection accepts the native x64 fixture without loading it
+PASS Malformed DLL is rejected
+PASS Path traversal is rejected before staging
+PASS Executable replacement is rejected
+PASS Verified backup exists before any game-file change
+PASS DLL and companion config are staged
+PASS A pending trial blocks another test
+PASS A new store instance recovers interrupted trials byte-for-byte
+PASS Original modification time is restored
+PASS Runtime config changes are preserved separately
+PASS Restoration is idempotent
+PASS A target absent before the test is absent after restoration
+PASS Baseline changes no game files
+PASS Candidate mutation is caught before staging
+PASS A rejected candidate leaves the original untouched
+PASS A corrupted original backup blocks restoration
+PASS Backup failure never reports successful restoration
+PASS A locked companion interrupts a multi-file stage
+PASS Partial-stage failure rolls back earlier files and preserves the locked original
+PASS Recovery completes after the external file lock is released
+PASS Direct launch opens the disposable fixture window
+PASS Running-game guard prevents file restoration while the process is alive
+PASS Finish gracefully closes the fixture and verifies it exited
+PASS End-to-end session restores the original DLL bytes
+PASS A manual launch that never starts reaches the bounded timeout
+PASS Timeout recovery restores staged files even when no game was launched
+PASS CSV export escapes quoted multiline notes
+PASS Start game passes every RE4-SmoothMotion.cmd setting to the child process
+PASS No closes the game and prepares the next option without launching it
+PASS No restores the previous DLL before staging the next proxy
+PASS The next option and its single active trial are persisted
+PASS The diagnostic attempt has no 30 FPS cap and does not force VSync
+PASS An absent profile setting does not leak from the prior attempt
+PASS Yes saves the working option without advancing or interrupting play
+PASS Stop closes the game and restores the successful test's tracked files
+PASS The saved working option survives an app restart
+PASS Start saved setup reuses the successful option
+PASS Rejecting the saved option resumes the remaining sequence
+PASS DLSSG attempts clear unrelated overrides and keep FPS caps and VSync disabled
+PASS Exhausting the queue restores everything and reports no confirmed success
+PASS A game that refuses to close blocks No from advancing or replacing its files
+PASS The pending test recovers after the close prompt is resolved
+PASS An immediate startup failure restores files and waits for the user's answer
+PASS The full catalog includes 17 attempts and the additional real x64 ASI loader
+PASS Every bundled DLL reconstructs to its recorded SHA-256 and passes static x64 PE inspection
+PASS DLSSG candidates include their matched configuration file automatically
+PASS Recognized inactive proxies can be suspended so only the tested proxy remains active
+PASS Suspended proxy originals are restored byte-for-byte after the test
+PASS No FPS cap or forced VSync in profile RE4-D3D12
+PASS No FPS cap or forced VSync in profile DIAGNOSTIC
+PASS No FPS cap or forced VSync in profile DLSSG
+PASS No FPS cap or forced VSync in profile D3D11-ASI
+PASS Steam context comes from the matching installed library manifest, including nested EXE folders
+PASS The launched child receives the correct Steam identity instead of stale inherited values
+PASS The Steam-context fixture closes cleanly after verification
+PASS Steam launch context does not write or patch Steam API files in the game directory
+PASS A non-Steam game does not inherit an unrelated Steam identity
+PASS Reset from a running third option closes the game and returns to option one
+PASS Reset preserves the selected executable and trial history while restoring tracked files
+PASS The reset position and cleared working choice survive reopening the app
+PASS Start after reset runs the first DLL instead of the previously saved third option
+PASS The staged reset fixture reaches option three without launching the prepared option
+PASS Reset of a prepared third option removes it and restores originals without launching a game
+PASS Reset does not erase progress or the saved choice when the game refuses to close
+PASS Reset completes safely once the game can close
+PASS Static analysis detects the game import that identifies a D3D11 path
+PASS A D3D11 game only receives ASI-loaded NVSmooth30 attempts, not incompatible DLSSG/D3D12 ones
+PASS The D3D11 attempt includes the exact pre-RE4-patch image with its Present hooks intact
+PASS The D3D11 ASI attempt explicitly enables its bridge
+PASS An old exhausted incompatible sequence safely restarts at the new game's first supported attempt
+PASS The loader, ASI plugin and its INI all participate in verified restoration
+PASS Windows registers global F1 and F2 shortcuts for the app's own window
+PASS The real Windows hotkey message dispatches F1 to Yes and F2 to No
+PASS Disabled shortcuts cannot enqueue another answer during a transition
+PASS Closing the registration releases F1 and F2 for reuse
+PASS Restoration waits for a short-lived post-exit file lock and then verifies the original bytes
+PASS The observed D3D11 failure is reported as unavailable, not successful frame generation
+PASS Backend initialization alone is not labeled frame generation success
+PASS Steam bootstrap is a valid native x64 ASI with an explicit initialization export
+PASS Windows loads and executes the generated Steam ASI in a disposable child process
+PASS Steam ASI applies the uncapped profile before backend loading and initializes only once
+PASS Steam toggle stages its loader, process configuration ASI and backend with durable original backups
+PASS Steam setup and explicit DirectX choice survive closing and reopening the app
+PASS Persistent setup enables the same Yes / No actions used by buttons and F1 / F2
+PASS Persistent answers are disabled while a file operation is busy
+PASS Yes records the installed persistent trial without disabling its normal launches
+PASS No restores a persistent attempt, records its verdict and installs exactly the next option
+PASS Disable and Remove test DLL restoration removes every tracked Steam helper and restores the original DLL
+PASS Changed installed Steam files are detected on reopen and require restoration
+PASS Changing DirectX disables Steam setup and restores every tracked file before selecting the new sequence
+PASS Removed DirectX 9 and 10 choices are rejected without changing the active selection or files
+PASS A saved obsolete DirectX choice migrates to Automatic while preserving restored trial history
+PASS Automatic selection keeps multiple DirectX imports ambiguous instead of guessing one with certainty
+PASS Automatic selection recognizes DirectX 10.1 and reports absent import evidence as unknown
+PASS Automatic detection also reads delayed DirectX imports from the executable bytes
+PASS PE inspection preserves delayed import provenance for reliable mixed-API hints
+PASS Returning to Automatic rebuilds the appropriate sequence and starts at option one
+PASS Persistent setup installs for a non-Steam executable without requiring a Steam library or App ID
+PASS Removing a non-Steam persistent setup restores originals and removes its helpers
+PASS Open game directly launches a non-Steam executable with its working directory and arguments
+PASS A normal non-Steam game exit retains the explicitly enabled persistent setup
+PASS A running persistent game leaves buttons and shortcut actions available
+PASS Persistent No gracefully closes the running fixture before preparing the next installed option
+PASS Stopping the direct-launch fixture restores all files and leaves no pending trial
+PASS Automatic recognizes Vulkan and selects its dedicated process-local integration
+PASS Both embedded Vulkan binaries extract to the exact locally tested hashes without execution
+PASS The DX9 route extracts the official x64 DXVK DLL and verified Vulkan layer without executing them
+PASS DX9's verified RTSS Vulkan workaround affects only its launch dictionary and adds no FPS cap
+PASS The DX9-specific workaround does not change other Vulkan launch profiles
+PASS A recorded DXVK device failure is reported explicitly instead of implying backend initialization succeeded
+PASS DXVK swapchain creation is distinguished from verified frame generation when another overlay changes function dispatch
+PASS DX9 translation stages only d3d9.dll while retaining a separately verified external Vulkan runtime
+PASS Removing the DX9 attempt restores a pre-existing d3d9.dll byte-for-byte
+PASS The extracted explicit-layer manifest identifies the bundled Vulkan integration
+PASS Vulkan cannot silently install a persistent DirectX proxy or modify global launch settings
+PASS Vulkan preparation journals an external runtime without staging game DLLs
+PASS Stopping an unlaunched external-layer trial cleanly restores its no-file journal
+PASS Vulkan launches inherit the layer path, verified v2 synchronization option, and no app FPS cap
+PASS The app launches its own no-Vulkan fixture with the new external-runtime environment and observes its PID
+PASS The external-runtime session closes its owned fixture and finishes without game-file changes
+PASS Embedded Unreal bootstrap resources resolve the exact renderer without game-name rules or directory guessing
+PASS Selecting the actual renderer keeps it as the direct executable
+PASS Wizard stores launch and renderer paths separately
+PASS Start stages beside the renderer and observes its child process after the bootstrap exits
+PASS The bootstrap's renderer child inherits the uncapped launch configuration
+PASS The app explains an unobserved test DLL rather than claiming frame generation worked
+PASS No closes the renderer and restores its first files before staging the next loader in the same correct directory
+PASS Trial diagnosis records the original launcher and actual renderer exit separately
+PASS Bootstrap test cleanup leaves no fixture process or staged DLL
+PASS Legacy bootstrap-folder installations require restoration before the renderer target is migrated
+PASS Migration refuses to restore old bootstrap files while the separate renderer is open
+PASS Legacy migration restores old files, resolves the renderer and resets the unverified result
+PASS Resolved launcher and renderer survive reopening
+PASS Embedded bootstrap paths cannot escape the selected game directory
+PASS A missing embedded renderer is reported instead of silently staging into the bootstrap folder
+PASS Recent crash context can identify the last-used API when both DirectX 11 and 12 are imported
+PASS Recorded API evidence for another executable path is ignored
+PASS Old recorded API evidence is ignored
+PASS Recorded XML rejects DTDs and external entity expansion
+PASS Recent UE3 log overrides conflicting import hints using the exact executable and installation directory
+PASS A UE3 renderer record from a different installation is ignored
+PASS Stale UE3 runtime evidence cannot select a current rendering route
+PASS A startup failure without API data retains matched recent backup-log evidence instead of falling back to DX11
+PASS Fallback backup logs must still match the exact selected installation
+PASS An old backend failure does not become this trial's diagnosis
+PASS Direct proxy diagnostics read new log bytes and ignore an earlier run's failure
+PASS A launcher changed after preparation is rejected before starting a process
+PASS A sole modern API alongside legacy imports is labelled as a heuristic
+PASS Direct DX9 imports are not displaced by a delay-loaded DX11 library when game logs are unavailable
+PASS A missing renderer has a distinct explanation from an unobserved DLL
+PASS A large raw PCK extent does not shadow later resource RVAs or cause a false resource-count error
+PASS Import RVAs after a short virtual / long raw packed section resolve to their own section
+PASS Bounded embedded PCK metadata identifies the engine and actual project name without executing code
+PASS Unknown Godot runtime offers only the supported experimental Vulkan route with explicit uncertainty
+PASS A matching recent Godot engine log identifies the previously used Vulkan API
+PASS Godot runtime logs with future timestamps are ignored
+PASS Godot OpenGL compatibility logs are distinguished from Vulkan
+PASS Old Godot runtime logs are ignored
+PASS A Godot log from a different engine version is ignored
+PASS An embedded project name cannot escape the Godot user-data folder
+PASS A bare parent-directory name is rejected before looking up a project log
+PASS An explicit Godot OpenGL configuration is reported instead of treated as DirectX
+PASS An explicit Forward+ project configuration provides a labelled Vulkan hint
+PASS A section named pck without the expected format signature is not identified as Godot
+PASS Real malformed resource tables remain rejected after packed-section support
+PASS FPS overlay refresh returns to one second while unrelated environment settings survive
+PASS The original application frametime graph, positions and colors are preserved
+PASS The existing CPU overlay repair survives displayed-FPS setup
+PASS FPS and display statistics use PresentMon telemetry rather than an assumed frame multiplier
+PASS An unrecognized custom FPS layout is refused rather than silently replaced
+
+170 checks passed.
+No real game or third-party DLL was executed. Real game compatibility and frame generation remain unverified.
+Fixture and recovery data retained locally; personal paths omitted from this published report.

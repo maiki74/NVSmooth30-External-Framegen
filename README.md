@@ -4,7 +4,7 @@
 
 **Version 0.3.7 preview · Windows x64 · .NET Framework 4.8**
 
-[**Download EXE**](https://github.com/maiki74/NVSmooth30-External-Framegen/raw/refs/heads/main/downloads/FramegenDllTester.exe) · [**Portable ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/raw/refs/heads/main/downloads/FramegenDllTester-Portable-v0.3.7.zip) · [Checksums](downloads/SHA256SUMS.txt) · [Source ZIP](https://github.com/maiki74/NVSmooth30-External-Framegen/archive/refs/heads/main.zip)
+[**Release v0.3.7**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/tag/v0.3.7) · [**Download EXE**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.7/FramegenDllTester.exe) · [**Portable ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.7/FramegenDllTester-Portable-v0.3.7.zip) · [**Source-code ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.7/FramegenDllTester-Source-v0.3.7.zip) · [Checksums](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.7/SHA256SUMS.txt)
 
 > **Online games and anti-cheat:** Easy Anti-Cheat and other systems that inspect DLLs may block a test, cause startup errors or create account risk. Use offline, unprotected sessions. If an anti-cheat error appears, stop testing and restore the original files. This app does not bypass anti-cheat or guarantee online compatibility.
 
