@@ -80,7 +80,7 @@ def publish(version, assets):
             raise
         body = (ROOT / "docs" / ("RELEASE-" + version + ".md")).read_text(encoding="utf-8-sig")
         body += "\n\nDownloads: EXE, portable ZIP, source-code ZIP and SHA256SUMS.txt are attached below. The source archive contains the app C#, native C adapter, tests, build scripts and notices. To rebuild from the source-only archive, also download the EXE into downloads/ so Extract-BuildInputs.ps1 can recover the verified embedded inputs.\n"
-        release = request(api + "/releases", "POST", json.dumps({"tag_name": tag, "target_commitish": commit, "name": "Framegen DLL Tester " + version + " preview", "body": body, "draft": False, "prerelease": True}).encode())
+        release = request(api + "/releases", "POST", json.dumps({"tag_name": tag, "target_commitish": commit, "name": "Framegen DLL Tester " + version, "body": body, "draft": False, "prerelease": False, "make_latest": "true"}).encode())
     if release.get("target_commitish") not in (commit, "main"):
         raise RuntimeError("This release already refers to another commit; refusing to overwrite it")
     existing = {asset["name"]: asset for asset in release["assets"]}
@@ -100,7 +100,7 @@ def publish(version, assets):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--version", default="0.3.7")
+    parser.add_argument("--version", default="0.3.8")
     parser.add_argument("--prepare-only", action="store_true")
     arguments = parser.parse_args()
     assets = packages(arguments.version)

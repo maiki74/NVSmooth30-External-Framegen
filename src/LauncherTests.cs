@@ -113,6 +113,16 @@ namespace FramegenLab
             check(RecordedGraphics.Read(renderer, crashes) == null, "Old recorded API evidence is ignored");
             File.WriteAllText(record, "<!DOCTYPE FGenericCrashContext [<!ENTITY ext SYSTEM 'file:///not-read'>]><FGenericCrashContext>&ext;</FGenericCrashContext>");
             check(RecordedGraphics.Read(renderer, crashes) == null, "Recorded XML rejects DTDs and external entity expansion");
+            string hookshotExe = Path.Combine(root, "hookshot-port", "bin", "hookshot.exe"), hookshotLog = Path.Combine(root, "hookshot-port", "hookshot_log.txt");
+            Directory.CreateDirectory(Path.GetDirectoryName(hookshotExe)); File.Copy(fixture, hookshotExe);
+            File.WriteAllText(hookshotLog, "[hos host] hookshot v2.0.10\r\n[hos host] vk: swapchain 1920x1080, 4 images, mailbox\r\n");
+            check(HookshotLog.ForGame(hookshotExe).Api == "vulkan", "A recent Hookshot host log one folder above the EXE selects the Vulkan route despite dynamic renderer loading");
+            File.WriteAllText(hookshotLog, "[hos host] hookshot v2.0.10\r\n[hos host] rx: WebGPU on fixture GPU (Vulkan); surface 1280x720\r\n");
+            check(HookshotLog.ForGame(hookshotExe).Api == "vulkan", "Hookshot's WebGPU fallback presenting through Vulkan is recognised");
+            File.WriteAllText(hookshotLog, "[hos host] hookshot v2.0.10\r\n[hos host] boot: image 96 MB\r\n");
+            check(HookshotLog.ForGame(hookshotExe) == null, "A Hookshot log without a renderer record selects nothing");
+            File.WriteAllText(hookshotLog, "[hos host] vk: swapchain 1920x1080\r\n"); File.SetLastWriteTimeUtc(hookshotLog, DateTime.UtcNow.AddDays(-8));
+            check(HookshotLog.ForGame(hookshotExe) == null, "A stale Hookshot log cannot select a current rendering route");
             string legacyRoot = Path.Combine(root, "legacy-api"), legacyLog = Path.Combine(legacyRoot, "OLGame", "Logs", "Launch.log");
             Directory.CreateDirectory(Path.GetDirectoryName(legacyLog));
             string legacyText = "Init: Base directory: " + Path.GetDirectoryName(renderer) + "\\\r\nInit: Executable: " + Path.GetFileNameWithoutExtension(renderer) + "\r\n[0000.88] Log: Using D3D9 device (0): fixture GPU\r\n";

@@ -2,9 +2,9 @@
 
 **Choose a game EXE, start the game, and test the included frame-generation DLLs.** The app handles the launch settings, backups, next attempt and restoration. You do not need to choose a candidate DLL, rename files or edit a batch file.
 
-**Version 0.3.7 preview · Windows x64 · .NET Framework 4.8**
+**Version 0.3.8 preview · Windows x64 · .NET Framework 4.8**
 
-[**Release v0.3.7**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/tag/v0.3.7) · [**Download EXE**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.7/FramegenDllTester.exe) · [**Portable ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.7/FramegenDllTester-Portable-v0.3.7.zip) · [**Source-code ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.7/FramegenDllTester-Source-v0.3.7.zip) · [Checksums](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.7/SHA256SUMS.txt)
+[**Release v0.3.8**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/tag/v0.3.8) · [**Download EXE**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.8/FramegenDllTester.exe) · [**Portable ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.8/FramegenDllTester-Portable-v0.3.8.zip) · [**Source-code ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.8/FramegenDllTester-Source-v0.3.8.zip) · [Checksums](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.8/SHA256SUMS.txt)
 
 > **Online games and anti-cheat:** Easy Anti-Cheat and other systems that inspect DLLs may block a test, cause startup errors or create account risk. Use offline, unprotected sessions. If an anti-cheat error appears, stop testing and restore the original files. This app does not bypass anti-cheat or guarantee online compatibility.
 
@@ -47,7 +47,7 @@ The app never force-terminates a game. Resolve a save prompt or close an unrespo
 | **Vulkan** | Experimental embedded Vulkan adapter, enabled only for the launched process tree. |
 | **DirectX 10 / OpenGL** | No compatible backend in this package. |
 
-**Automatic** uses executable imports, distinguishes direct and delayed imports, reads recognized Unreal launcher resources, and uses bounded recent matching game logs where available. Packed Godot metadata is inspected without executing the game. These are detection hints; dynamic loading and a different launch configuration can change the actual renderer.
+**Automatic** uses executable imports, distinguishes direct and delayed imports, reads recognized Unreal launcher resources, and uses bounded recent matching game logs where available, including a Hookshot port's `hookshot_log.txt`. Packed Godot metadata is inspected without executing the game. These are detection hints; dynamic loading and a different launch configuration can change the actual renderer.
 
 Manual **DirectX 12 / DirectX 11 / Vulkan** selects the test route; it does not force the game's renderer. Changing the selection restores the current attempt and resets the sequence. DX9 translation is a separate automatic route that translates the game's calls into Vulkan.
 
@@ -62,7 +62,7 @@ The fix has two parts:
 - Outlast's matched UE3 log identifies **DX9**. Its delayed DX11 import must not replace that evidence, including after an incomplete startup log.
 - The DX9 route stages verified DXVK `d3d9.dll` and applies a child-only workaround for a reproduced conflict with **RTSS's Vulkan layer**. RTSS stays running and its saved settings are unchanged; overlay availability still needs a gameplay check.
 
-Buckshot Roulette also has positive owner feedback after 0.3.2. Dark Souls Remastered has a reported 120 FPS counter alongside a bridge error, so its generated-frame result remains unresolved. Stray has no confirmed successful gameplay result in this app. See the [gameplay feedback table](docs/TESTED-GAMES.md).
+A Hookshot port (`hookshot.exe`) worked for the owner through the Vulkan layer; 0.3.8 selects that route automatically from the port's own log. Buckshot Roulette also has positive owner feedback after 0.3.2. Dark Souls Remastered has a reported 120 FPS counter alongside a bridge error, so its generated-frame result remains unresolved. Stray has no confirmed successful gameplay result in this app. See the [gameplay feedback table](docs/TESTED-GAMES.md).
 
 Visual feedback does not establish an exact generated-frame count, latency improvement or compatibility with other installations.
 
@@ -94,7 +94,7 @@ Files are backed up before staging and restored after a normal test ends. An exp
 
 ## Verification and build
 
-The current logic passes **170 automated checks** covering control states, hotkeys, launchers, API evidence, staging, restoration and recovery. Separate disposable DX9 presentation fixtures reproduce the RTSS conflict and verify the child-only workaround. Those fixtures do not prove generated frames in a real game. See [verification](docs/VERIFICATION.md) and [published check output](docs/AUTOMATED-CHECKS.txt).
+The current logic passes **174 automated checks** covering control states, hotkeys, launchers, API evidence, staging, restoration and recovery. Separate disposable DX9 presentation fixtures reproduce the RTSS conflict and verify the child-only workaround. Those fixtures do not prove generated frames in a real game. See [verification](docs/VERIFICATION.md) and [published check output](docs/AUTOMATED-CHECKS.txt).
 
 The repository includes the original C# source, native C adapter, tests and packaging scripts. To rebuild the supplied snapshot using Windows PowerShell 5.1 and .NET Framework 4.8:
 

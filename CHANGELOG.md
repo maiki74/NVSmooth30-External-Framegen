@@ -1,5 +1,12 @@
 ﻿# Changelog
 
+## 0.3.8 preview — 2026-11-09
+
+- Fix Hookshot ports (`hookshot.exe`): the renderer is loaded at runtime, so import detection returned unknown and Automatic offered only DirectX proxies that could never attach. Automatic now reads a recent `hookshot_log.txt` beside the EXE or one folder up and selects the process-local Vulkan route.
+- The owner confirmed the Vulkan layer working in a Hookshot port with the existing 0.3.7 layer and launch settings. Launch logic and native binaries are unchanged.
+- 174 automated checks (4 new for Hookshot log evidence: native Vulkan, WebGPU on Vulkan, no renderer record, stale log).
+- New releases are published as the latest normal release.
+
 ## 0.3.7 preview — 2026-10-24
 
 - Publish app source, the original native Vulkan adapter, English documentation, credits and a portable package in the owner-selected repository.

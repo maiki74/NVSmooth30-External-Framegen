@@ -1,5 +1,5 @@
 # PowerShell · Package-Portable.ps1 · portable preview package · Windows x64 · .NET Framework 4.8
-param([string]$Version='0.3.7')
+param([string]$Version='0.3.8')
 $ErrorActionPreference='Stop'
 $project=Split-Path -Parent $PSScriptRoot
 $exe=Join-Path $project 'downloads\FramegenDllTester.exe'

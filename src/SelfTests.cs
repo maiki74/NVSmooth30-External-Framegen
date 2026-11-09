@@ -111,7 +111,7 @@ namespace FramegenLab
                 LauncherTests.Run(root, game, candidate, Check);
                 GodotTests.Run(root, candidate, Check);
                 OverlayTests.Run(Check);
-                File.WriteAllText(report, "Framegen DLL Tester 0.3.7 - local automated verification\r\n" + DateTime.UtcNow.ToString("o") + "\r\n" + String.Join("\r\n", passed.ToArray()) +
+                File.WriteAllText(report, "Framegen DLL Tester 0.3.8 - local automated verification\r\n" + DateTime.UtcNow.ToString("o") + "\r\n" + String.Join("\r\n", passed.ToArray()) +
                     "\r\n\r\n" + passed.Count + " checks passed.\r\nNo real game or third-party DLL was executed. Real game compatibility and frame generation remain unverified.\r\nFixture and recovery data retained at: " + root);
                 return 0;
             }

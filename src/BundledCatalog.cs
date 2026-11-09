@@ -95,6 +95,7 @@ namespace FramegenLab
                 image = PeInspector.Inspect(path); detected = GraphicsApi.Detect(image);
                 GraphicsDetection recorded = RecordedGraphics.ForGame(path);
                 if (recorded == null) recorded = GodotMetadata.ForGame(path, image);
+                if (recorded == null) recorded = HookshotLog.ForGame(path);
                 if (recorded != null) detected = recorded;
             }
             string selected = mode == "auto" ? detected.Api : mode;

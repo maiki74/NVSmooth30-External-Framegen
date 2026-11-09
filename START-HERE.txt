@@ -1,4 +1,4 @@
-﻿FRAMEGEN DLL TESTER 0.3.7 - PREVIEW
+﻿FRAMEGEN DLL TESTER 0.3.8 - PREVIEW
 
 Open FramegenDllTester.exe from the portable ZIP.
 In a repository checkout, open downloads\FramegenDllTester.exe.

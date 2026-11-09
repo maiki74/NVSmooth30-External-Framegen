@@ -2,12 +2,13 @@
 
 | Game | App / route | Reported result | Evidence limits |
 | --- | --- | --- | --- |
+| Hookshot port (`hookshot.exe`, Vulkan / WebGPU on Vulkan) | 0.3.7 Vulkan layer and launch settings, started manually; 0.3.8 selects this route automatically | Owner: it worked | FramegenVulkan, NVSmoothBackend and NvPresent64 observed in the game process; swapchain creation forwarded. That run used the port's WebGPU fallback at 1280x720. The 0.3.8 **Start game** path for this game has no gameplay result yet; no independently measured generated FPS. |
 | Outlast (64-bit) | 0.3.6, Automatic DX9 -> DXVK -> Vulkan | Owner: game opened and felt smoother | DXVK presentation recorded; clean exit and tracked DLL restoration. No independently measured generated FPS, input latency or overlay validation. |
 | Buckshot Roulette | 0.3.2, Automatic Vulkan | Owner: game opened and felt smoother | Positive visual feedback; no independent generated-frame count. |
 | Dark Souls Remastered | Earlier D3D11 / ASI attempts | Owner reported a launch with MSI Afterburner showing 120 FPS | Logs also recorded a shadow-swapchain error. Counter meaning and generated frames remain unresolved. |
 | Stray | Unreal launcher / renderer resolution | Selection and staging repaired | No confirmed successful gameplay result in this app. |
 
-Version 0.3.7 retains the tested 0.3.6 launch logic. Its C# changes are publication labels, version and source links. A successful result on one installation does not establish compatibility with all games or drivers.
+Version 0.3.7 retains the tested 0.3.6 launch logic. Its C# changes are publication labels, version and source links. Version 0.3.8 adds Hookshot log detection only; launch logic is unchanged. A successful result on one installation does not establish compatibility with all games or drivers.
 
 ## Outlast compatibility fix
 

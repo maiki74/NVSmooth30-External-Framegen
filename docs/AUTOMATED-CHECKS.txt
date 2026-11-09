@@ -1,5 +1,5 @@
-Framegen DLL Tester 0.3.7 - local automated verification
-2026-10-24T06:01:28.8034779Z
+Framegen DLL Tester 0.3.8 - local automated verification
+2026-11-09T22:47:36.0841495Z
 PASS Static PE inspection accepts the native x64 fixture without loading it
 PASS Malformed DLL is rejected
 PASS Path traversal is rejected before staging
@@ -139,6 +139,10 @@ PASS Recent crash context can identify the last-used API when both DirectX 11 an
 PASS Recorded API evidence for another executable path is ignored
 PASS Old recorded API evidence is ignored
 PASS Recorded XML rejects DTDs and external entity expansion
+PASS A recent Hookshot host log one folder above the EXE selects the Vulkan route despite dynamic renderer loading
+PASS Hookshot's WebGPU fallback presenting through Vulkan is recognised
+PASS A Hookshot log without a renderer record selects nothing
+PASS A stale Hookshot log cannot select a current rendering route
 PASS Recent UE3 log overrides conflicting import hints using the exact executable and installation directory
 PASS A UE3 renderer record from a different installation is ignored
 PASS Stale UE3 runtime evidence cannot select a current rendering route
@@ -171,6 +175,6 @@ PASS The existing CPU overlay repair survives displayed-FPS setup
 PASS FPS and display statistics use PresentMon telemetry rather than an assumed frame multiplier
 PASS An unrecognized custom FPS layout is refused rather than silently replaced
 
-170 checks passed.
+174 checks passed.
 No real game or third-party DLL was executed. Real game compatibility and frame generation remain unverified.
 Fixture and recovery data retained locally; personal paths omitted from this published report.
