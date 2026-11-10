@@ -72,6 +72,8 @@ namespace FramegenLab
         public int Count { get { return active.Count; } }
         public bool VulkanActive {get{return active.Count==1&&(active[0].Profile==VulkanRuntime.Profile||active[0].Profile==Dx9Runtime.Profile);}}
         public bool TranslatedDx9 {get{return active.Count==1&&active[0].Profile==Dx9Runtime.Profile;}}
+        public bool IsVulkan(int i) {return i>=0&&i<active.Count&&(active[i].Profile==VulkanRuntime.Profile||active[i].Profile==Dx9Runtime.Profile);}
+        public bool IsDx9(int i) {return i>=0&&i<active.Count&&active[i].Profile==Dx9Runtime.Profile;}
         public string GraphicsSummary { get; private set; }
         public string UnavailableReason { get; private set; }
         public string Label(int index) { return active[index].Label; }
@@ -90,12 +92,13 @@ namespace FramegenLab
             string mode = GraphicsApi.Normalize(graphicsApi);
             GraphicsDetection detected = new GraphicsDetection();
             PeInfo image = null;
+            GraphicsDetection hookshot = null;
             if (!String.IsNullOrEmpty(path) && File.Exists(path))
             {
                 image = PeInspector.Inspect(path); detected = GraphicsApi.Detect(image);
                 GraphicsDetection recorded = RecordedGraphics.ForGame(path);
                 if (recorded == null) recorded = GodotMetadata.ForGame(path, image);
-                if (recorded == null) recorded = HookshotLog.ForGame(path);
+                if (recorded == null) recorded = hookshot = HookshotLog.ForGame(path);
                 if (recorded != null) detected = recorded;
             }
             string selected = mode == "auto" ? detected.Api : mode;
@@ -108,6 +111,8 @@ namespace FramegenLab
             else if (selected == "vulkan") choices = new List<BundleCandidate> { new BundleCandidate { Id="VULKAN-v2",Label="NVSmooth30 - Vulkan v2 (process-local; experimental)",Dll="FramegenVulkan.dll",Target="FramegenVulkan.dll",Profile=VulkanRuntime.Profile,Family="Vulkan" } };
             else if (selected == "dx9") choices = new List<BundleCandidate> { new BundleCandidate { Id="DX9-DXVK-3.1.1-Vulkan-v2",Label="DirectX 9 -> DXVK -> NVSmooth30 Vulkan (experimental)",Dll="d3d9.dll",Target="d3d9.dll",Profile=Dx9Runtime.Profile,Family="DX9-Vulkan" } };
             else if (selected == "dx10" || selected == "opengl") choices.Clear();
+            // Hookshot can also render through WebGPU on DirectX, so its log is a hint: Vulkan first, DirectX options kept.
+            if (selected == "vulkan" && hookshot != null && mode == "auto") choices.AddRange(Manifest.Candidates);
             UnavailableReason = choices.Count == 0 ? "No bundled frame-generation backend supports " + GraphicsApi.Label(selected) + "." : null;
             GraphicsSummary = (mode == "auto" ? "Automatic: " : "Manual: " + GraphicsApi.Label(mode) + ". ") + detected.Evidence;
             if (godotFallback) GraphicsSummary += " Only the experimental Vulkan test is offered for this engine; no DirectX proxies are staged.";
@@ -180,7 +185,8 @@ namespace FramegenLab
         public PreparedCandidate PrepareSteam(int index, string game)
         {
             PreparedCandidate normal = Prepare(index);
-            if(normal.Profile==VulkanRuntime.Profile || normal.Profile==Dx9Runtime.Profile)throw new IOException("Vulkan uses the app's Start game button and process-local settings. Permanent normal-launch installation is not available for this integration.");
+            if(normal.Profile==Dx9Runtime.Profile)throw new IOException("DX9 -> Vulkan uses the app's Start game button. Permanent normal-launch installation is not available for this integration.");
+            if(normal.Profile==VulkanRuntime.Profile) lock(gate) return VulkanRuntime.PreparePersistent(cache, game, Extract("ultimate-asi-loader.dll"));
             if (normal.Profile == "DLSSG") return normal; // This family uses its existing INI, not SM86 variables.
             lock (gate)
             {

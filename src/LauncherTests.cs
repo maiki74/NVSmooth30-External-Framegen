@@ -123,6 +123,10 @@ namespace FramegenLab
             check(HookshotLog.ForGame(hookshotExe) == null, "A Hookshot log without a renderer record selects nothing");
             File.WriteAllText(hookshotLog, "[hos host] vk: swapchain 1920x1080\r\n"); File.SetLastWriteTimeUtc(hookshotLog, DateTime.UtcNow.AddDays(-8));
             check(HookshotLog.ForGame(hookshotExe) == null, "A stale Hookshot log cannot select a current rendering route");
+            File.WriteAllText(hookshotLog, "[hos host] rx: renderer: Vulkan (hookshot_vk.dll)\r\n" + new string('x', 3 * 1048576));
+            check(HookshotLog.ForGame(hookshotExe).Api == "vulkan", "A long Hookshot session log (over 2 MB) still selects Vulkan from its startup lines");
+            BundledCatalog hookshotCatalog = new BundledCatalog(Path.Combine(root, "hookshot-data")); hookshotCatalog.ConfigureGame(hookshotExe);
+            check(hookshotCatalog.Count > 1 && hookshotCatalog.IsVulkan(0) && !hookshotCatalog.IsVulkan(1), "Hookshot offers Vulkan first and keeps every DirectX DLL option after it");
             string legacyRoot = Path.Combine(root, "legacy-api"), legacyLog = Path.Combine(legacyRoot, "OLGame", "Logs", "Launch.log");
             Directory.CreateDirectory(Path.GetDirectoryName(legacyLog));
             string legacyText = "Init: Base directory: " + Path.GetDirectoryName(renderer) + "\\\r\nInit: Executable: " + Path.GetFileNameWithoutExtension(renderer) + "\r\n[0000.88] Log: Using D3D9 device (0): fixture GPU\r\n";

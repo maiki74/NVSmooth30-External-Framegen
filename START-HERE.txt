@@ -1,4 +1,4 @@
-﻿FRAMEGEN DLL TESTER 0.3.8 - PREVIEW
+﻿FRAMEGEN DLL TESTER 0.3.9 - PREVIEW
 
 Open FramegenDllTester.exe from the portable ZIP.
 In a repository checkout, open downloads\FramegenDllTester.exe.
@@ -31,7 +31,7 @@ Manual DX12 / DX11 / Vulkan selects the tests, not the game's renderer.
 Automatic DX9 uses an experimental DXVK -> Vulkan route; DX10 has no bundled route. Vulkan uses one experimental local integration.
 SpartanPort opens through its normal launcher with the saved boot configuration.
 The Vulkan DLLs are included in the EXE and stay in the app's own cache.
-Start Vulkan games from this app; no persistent normal-launch toggle is offered.
+Native Vulkan can use Keep framegen setup installed when the game imports winmm, version, dinput8 or xinput1_3 (Hookshot uses winmm); DX9 -> Vulkan must be started from this app.
 Vulkan v2 can relax VSync for that launch; saved display settings stay unchanged.
 The tested NVIDIA driver and SpartanPort launcher builds are hash-guarded.
 

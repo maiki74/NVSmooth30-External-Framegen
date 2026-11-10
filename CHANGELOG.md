@@ -1,5 +1,12 @@
 ﻿# Changelog
 
+## 0.3.9 preview — 2026-11-10
+
+- Fix: 0.3.8 offered only the Vulkan option for Hookshot ports. Hookshot can also render through WebGPU on DirectX, so Automatic now lists Vulkan first and keeps every DirectX option after it. Other games are unchanged.
+- Fix: **Keep framegen setup installed** now works for native Vulkan. Ultimate ASI Loader (named after a DLL the game imports) runs a configuration ASI that sets the layer variables inside the game process only; layer files are copied beside the game EXE with tracked restore. Verified with a normal `hookshot.exe` launch. DX9 -> Vulkan stays app-launch only.
+- Fix: long Hookshot sessions grow `hookshot_log.txt` past 2 MB, which made detection ignore it. Only the first 1 MB (the start-up renderer lines) is read now.
+- 177 automated checks.
+
 ## 0.3.8 preview — 2026-11-09
 
 - Fix Hookshot ports (`hookshot.exe`): the renderer is loaded at runtime, so import detection returned unknown and Automatic offered only DirectX proxies that could never attach. Automatic now reads a recent `hookshot_log.txt` beside the EXE or one folder up and selects the process-local Vulkan route.

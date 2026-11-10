@@ -1,10 +1,10 @@
 # Local verification
 
-Build: **0.3.8 preview**. Date: 2026-11-09. The executable hash is recorded in `downloads/SHA256SUMS.txt`.
+Build: **0.3.9 preview**. Date: 2026-11-10. The executable hash is recorded in `downloads/SHA256SUMS.txt`.
 
 ## Current validation
 
-The 174-check suite covers persistent Yes / No controls, F1 / F2 registration and dispatch, safe close / restore / next behavior, PE imports, UE3 backup-log evidence, DX9 translation staging, the per-child RTSS Vulkan workaround and prior recovery / launcher / Godot / overlay checks. It uses disposable windows and inert fixtures, without launching real games or deliberately executing third-party frame-generation DLLs.
+The 177-check suite covers persistent Yes / No controls, F1 / F2 registration and dispatch, safe close / restore / next behavior, PE imports, UE3 backup-log evidence, DX9 translation staging, the per-child RTSS Vulkan workaround and prior recovery / launcher / Godot / overlay checks. It uses disposable windows and inert fixtures, without launching real games or deliberately executing third-party frame-generation DLLs.
 
 Separate real-DX9 presentation fixtures reproduced the Outlast-named RTSS Vulkan device-chain failure. The child-only workaround permitted 180 presents, normal exit and tracked DLL restoration. These runs execute the verified DXVK and Vulkan runtime in the independently owned test process and are separate from the inert suite.
 

@@ -4,7 +4,7 @@ The combined app embeds `FramegenVulkan.dll` and the existing prepared `NVSmooth
 
 For the verified SpartanPort installation, choosing `spartanport-probe.exe` or one of the known Play / main launcher filenames resolves to the renderer for detection. Actual launch uses the normal `Play SpartanPort.exe`, which supplies the boot image and game configuration. The selected renderer's process is monitored for exit, so the short-lived Play launcher does not prematurely end the session. The app allows up to 90 seconds after wrapper exit for its renderer to appear. Stop requests a graceful close and never force-terminates it.
 
-Vulkan has one dedicated option. F1 / Yes saves the choice; F2 / No closes the session and ends this one-option sequence. The DirectX persistent-install toggle is hidden because this Vulkan integration needs the app's process-local launch settings. A normal game launch outside this app does not enable it.
+Vulkan has one dedicated option (for Hookshot ports it is listed first, followed by the DirectX options). F1 / Yes saves the choice; F2 / No closes the session and moves to the next option, if any. Since 0.3.9 **Keep framegen setup installed** also works for native Vulkan: Ultimate ASI Loader, named after a DLL the game imports (winmm, version, dinput8 or xinput1_3), loads a configuration ASI that sets `VK_LAYER_PATH`, `VK_INSTANCE_LAYERS` and the SM86 values inside the game process; the layer files are copied beside the game EXE with tracked backup / restore. DX9 -> Vulkan still has no persistent install; a normal game launch outside this app does not enable that route.
 
 ## Presentation change
 

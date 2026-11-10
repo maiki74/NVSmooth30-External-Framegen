@@ -18,12 +18,13 @@ namespace FramegenLab
                 {
                     if (root == null) continue;
                     FileInfo file = new FileInfo(Path.Combine(root, "hookshot_log.txt"));
-                    if (!file.Exists || file.Length > 2097152 || file.LastWriteTimeUtc < DateTime.UtcNow.AddDays(-7) ||
+                    if (!file.Exists || file.LastWriteTimeUtc < DateTime.UtcNow.AddDays(-7) ||
                         file.LastWriteTimeUtc < File.GetLastWriteTimeUtc(renderer) || file.LastWriteTimeUtc > DateTime.UtcNow.AddMinutes(5)) continue;
                     Disk.NoLinks(file.FullName);
                     string text;
                     using (var stream = new FileStream(file.FullName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-                    using (var reader = new StreamReader(stream)) text = reader.ReadToEnd();
+                    // The renderer is recorded at startup; long sessions grow the log, so read only its first 1 MB.
+                    using (var reader = new StreamReader(stream)) { char[] head = new char[1048576]; text = new string(head, 0, reader.ReadBlock(head, 0, head.Length)); }
                     // shortcut: only Vulkan presentation is recognised (native renderer or wgpu on Vulkan); add other backends if a port ships one.
                     if (!Regex.IsMatch(text, @"(?m)^\[hos host\] (rx: renderer: Vulkan\b|rx: WebGPU on [^\r\n]*\(Vulkan\)|vk: swapchain )")) continue;
                     return new GraphicsDetection { Api = "vulkan", Evidence = "Last recorded run: Vulkan (Hookshot log, " + file.LastWriteTimeUtc.ToString("yyyy-MM-dd HH:mm 'UTC'") + "). Next launch may differ." };

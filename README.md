@@ -2,9 +2,9 @@
 
 **Choose a game EXE, start the game, and test the included frame-generation DLLs.** The app handles the launch settings, backups, next attempt and restoration. You do not need to choose a candidate DLL, rename files or edit a batch file.
 
-**Version 0.3.8 preview · Windows x64 · .NET Framework 4.8**
+**Version 0.3.9 preview · Windows x64 · .NET Framework 4.8**
 
-[**Release v0.3.8**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/tag/v0.3.8) · [**Download EXE**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.8/FramegenDllTester.exe) · [**Portable ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.8/FramegenDllTester-Portable-v0.3.8.zip) · [**Source-code ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.8/FramegenDllTester-Source-v0.3.8.zip) · [Checksums](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.8/SHA256SUMS.txt)
+[**Release v0.3.9**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/tag/v0.3.9) · [**Download EXE**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.9/FramegenDllTester.exe) · [**Portable ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.9/FramegenDllTester-Portable-v0.3.9.zip) · [**Source-code ZIP**](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.9/FramegenDllTester-Source-v0.3.9.zip) · [Checksums](https://github.com/maiki74/NVSmooth30-External-Framegen/releases/download/v0.3.9/SHA256SUMS.txt)
 
 > **Online games and anti-cheat:** Easy Anti-Cheat and other systems that inspect DLLs may block a test, cause startup errors or create account risk. Use offline, unprotected sessions. If an anti-cheat error appears, stop testing and restore the original files. This app does not bypass anti-cheat or guarantee online compatibility.
 
@@ -62,7 +62,7 @@ The fix has two parts:
 - Outlast's matched UE3 log identifies **DX9**. Its delayed DX11 import must not replace that evidence, including after an incomplete startup log.
 - The DX9 route stages verified DXVK `d3d9.dll` and applies a child-only workaround for a reproduced conflict with **RTSS's Vulkan layer**. RTSS stays running and its saved settings are unchanged; overlay availability still needs a gameplay check.
 
-A Hookshot port (`hookshot.exe`) worked for the owner through the Vulkan layer; 0.3.8 selects that route automatically from the port's own log. Buckshot Roulette also has positive owner feedback after 0.3.2. Dark Souls Remastered has a reported 120 FPS counter alongside a bridge error, so its generated-frame result remains unresolved. Stray has no confirmed successful gameplay result in this app. See the [gameplay feedback table](docs/TESTED-GAMES.md).
+A Hookshot port (`hookshot.exe`) worked for the owner through the Vulkan layer; since 0.3.9 Automatic lists that Vulkan route first and keeps all DirectX options after it, and the Vulkan route can stay installed for normal launches. Buckshot Roulette also has positive owner feedback after 0.3.2. Dark Souls Remastered has a reported 120 FPS counter alongside a bridge error, so its generated-frame result remains unresolved. Stray has no confirmed successful gameplay result in this app. See the [gameplay feedback table](docs/TESTED-GAMES.md).
 
 Visual feedback does not establish an exact generated-frame count, latency improvement or compatibility with other installations.
 
@@ -72,7 +72,7 @@ Steam is not required for all games. For recognized installed Steam games, the a
 
 **Keep framegen setup installed** is optional for the compatible DX11 / DX12 routes. It retains tracked files for normal launches with the tester closed. Turn it off or use **Remove test DLL** to restore the originals.
 
-**Native Vulkan and DX9 -> Vulkan must be launched from this app.** They depend on process-local settings and do not offer persistent normal-launch installation. Starting the game directly from Steam does not apply those settings.
+**Native Vulkan** can be started from this app or, with **Keep framegen setup installed**, launched normally: Ultimate ASI Loader (named after a DLL the game imports: winmm, version, dinput8 or xinput1_3) runs a configuration ASI that sets the layer variables inside the game process only, and the layer files are copied beside the game EXE with tracked restore. No global Vulkan layer or environment is registered. **DX9 -> Vulkan must be launched from this app.**
 
 ## FPS settings and overlay
 
@@ -94,7 +94,7 @@ Files are backed up before staging and restored after a normal test ends. An exp
 
 ## Verification and build
 
-The current logic passes **174 automated checks** covering control states, hotkeys, launchers, API evidence, staging, restoration and recovery. Separate disposable DX9 presentation fixtures reproduce the RTSS conflict and verify the child-only workaround. Those fixtures do not prove generated frames in a real game. See [verification](docs/VERIFICATION.md) and [published check output](docs/AUTOMATED-CHECKS.txt).
+The current logic passes **177 automated checks** covering control states, hotkeys, launchers, API evidence, staging, restoration and recovery. Separate disposable DX9 presentation fixtures reproduce the RTSS conflict and verify the child-only workaround. Those fixtures do not prove generated frames in a real game. See [verification](docs/VERIFICATION.md) and [published check output](docs/AUTOMATED-CHECKS.txt).
 
 The repository includes the original C# source, native C adapter, tests and packaging scripts. To rebuild the supplied snapshot using Windows PowerShell 5.1 and .NET Framework 4.8:
 

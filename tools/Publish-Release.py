@@ -100,7 +100,7 @@ def publish(version, assets):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--version", default="0.3.8")
+    parser.add_argument("--version", default="0.3.9")
     parser.add_argument("--prepare-only", action="store_true")
     arguments = parser.parse_args()
     assets = packages(arguments.version)

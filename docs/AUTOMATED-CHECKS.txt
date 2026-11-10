@@ -1,5 +1,5 @@
-Framegen DLL Tester 0.3.8 - local automated verification
-2026-11-09T22:47:36.0841495Z
+Framegen DLL Tester 0.3.9 - local automated verification
+2026-11-10T14:31:45.8082423Z
 PASS Static PE inspection accepts the native x64 fixture without loading it
 PASS Malformed DLL is rejected
 PASS Path traversal is rejected before staging
@@ -114,7 +114,8 @@ PASS DXVK swapchain creation is distinguished from verified frame generation whe
 PASS DX9 translation stages only d3d9.dll while retaining a separately verified external Vulkan runtime
 PASS Removing the DX9 attempt restores a pre-existing d3d9.dll byte-for-byte
 PASS The extracted explicit-layer manifest identifies the bundled Vulkan integration
-PASS Vulkan cannot silently install a persistent DirectX proxy or modify global launch settings
+PASS Persistent Vulkan setup installs nothing when the game imports no supported loader name (or the driver is not the verified build)
+PASS The persistent Vulkan configuration ASI sets the layer path, layer name and SM86 values inside the game process
 PASS Vulkan preparation journals an external runtime without staging game DLLs
 PASS Stopping an unlaunched external-layer trial cleanly restores its no-file journal
 PASS Vulkan launches inherit the layer path, verified v2 synchronization option, and no app FPS cap
@@ -143,6 +144,8 @@ PASS A recent Hookshot host log one folder above the EXE selects the Vulkan rout
 PASS Hookshot's WebGPU fallback presenting through Vulkan is recognised
 PASS A Hookshot log without a renderer record selects nothing
 PASS A stale Hookshot log cannot select a current rendering route
+PASS A long Hookshot session log (over 2 MB) still selects Vulkan from its startup lines
+PASS Hookshot offers Vulkan first and keeps every DirectX DLL option after it
 PASS Recent UE3 log overrides conflicting import hints using the exact executable and installation directory
 PASS A UE3 renderer record from a different installation is ignored
 PASS Stale UE3 runtime evidence cannot select a current rendering route
@@ -175,6 +178,6 @@ PASS The existing CPU overlay repair survives displayed-FPS setup
 PASS FPS and display statistics use PresentMon telemetry rather than an assumed frame multiplier
 PASS An unrecognized custom FPS layout is refused rather than silently replaced
 
-174 checks passed.
+177 checks passed.
 No real game or third-party DLL was executed. Real game compatibility and frame generation remain unverified.
 Fixture and recovery data retained locally; personal paths omitted from this published report.

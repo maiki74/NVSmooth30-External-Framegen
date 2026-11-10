@@ -23,6 +23,27 @@ namespace FramegenLab
             if(!File.Exists(manifestPath)||File.ReadAllText(manifestPath)!=manifest) Disk.AtomicBytes(manifestPath,System.Text.Encoding.UTF8.GetBytes(manifest));
             return new PreparedCandidate { Dll=layer,Target="FramegenVulkan.dll",Companions=new string[0],Profile=Profile,Label="NVSmooth30 - Vulkan v2 (process-local; experimental)" };
         }
+        // Persistent setup: Ultimate ASI Loader (named after a DLL the game imports) runs the configuration ASI,
+        // which sets the layer variables inside the game process only. Layer files sit beside the game EXE.
+        public static PreparedCandidate PreparePersistent(string cache,string game,string loader)
+        {
+            RequireSupportedDriver();
+            PreparedCandidate local=Prepare(cache);
+            string folder=Path.GetDirectoryName(local.Dll);
+            PeInfo image=PeInspector.Inspect(game);
+            string proxy=new[]{"winmm.dll","version.dll","dinput8.dll","xinput1_3.dll"}.FirstOrDefault(n=>image.Imports.Contains(n,StringComparer.OrdinalIgnoreCase));
+            if(proxy==null)throw new IOException("This game imports none of the loader names used for persistent Vulkan setup (winmm, version, dinput8, xinput1_3). Start it from this app instead.");
+            string generated=Path.Combine(cache,"steam-"+Disk.Hash(game).Substring(0,12)+"-VULKAN-v2");Directory.CreateDirectory(generated);Disk.NoLinks(generated);
+            var values=LaunchProfiles.Values(Profile);
+            values["VK_LAYER_PATH"]=Path.GetDirectoryName(Path.GetFullPath(game));
+            values["VK_INSTANCE_LAYERS"]=LayerName;
+            // The bootstrap must load an absolute DLL; kernel32 is a no-op load. The Vulkan loader loads the layer itself.
+            string bootstrap=Path.Combine(generated,"FramegenLab.Steam.asi");
+            Disk.AtomicBytes(bootstrap,SteamBootstrap.Build(Path.Combine(Environment.SystemDirectory,"kernel32.dll"),values));
+            string config=Path.Combine(generated,Path.GetFileNameWithoutExtension(proxy)+".ini");
+            File.WriteAllText(config,"[GlobalSets]\r\nLoadPlugins=1\r\nLoadFromScriptsOnly=1\r\nLoadRecursively=0\r\nLoadExtraPlugins=FramegenLab.Steam.asi\r\nDontLoadFromDllMain=1\r\nDebugLog=1\r\n",System.Text.Encoding.ASCII);
+            return new PreparedCandidate{Dll=loader,Target=proxy,Companions=new[]{local.Dll,Path.Combine(folder,"NVSmoothBackend.dll"),Path.Combine(folder,"FramegenVulkan.json"),bootstrap,config},Profile=Profile,Label=local.Label+" - persistent"};
+        }
         static string Extract(string folder,string name,string resource,string expected)
         {
             string target=Path.Combine(folder,name);Disk.NoLinks(target);

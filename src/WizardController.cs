@@ -167,7 +167,7 @@ namespace FramegenLab
             if (SteamEnabled) return;
             BundledCatalog bundled = Catalog as BundledCatalog;
             if (bundled == null || bundled.Count == 0 || State.Index >= bundled.Count) throw new IOException("Choose an available DLL option before enabling persistent setup. Reset tests if the sequence is exhausted.");
-            if(bundled.VulkanActive)throw new IOException("Start Vulkan games from this app. This integration applies only to the launched process tree.");
+            if(bundled.IsDx9(State.Index))throw new IOException("Start DX9 -> Vulkan games from this app. Persistent setup is not available for this route.");
             await Stop(); Busy = true;
             try
             {

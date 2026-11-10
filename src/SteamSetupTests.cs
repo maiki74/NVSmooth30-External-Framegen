@@ -176,7 +176,9 @@ namespace FramegenLab
             string vkManifest=File.ReadAllText(Path.Combine(Path.GetDirectoryName(vk.Dll),"FramegenVulkan.json"));
             check(vkManifest.Contains(VulkanRuntime.LayerName)&&vkManifest.Contains("FramegenVulkan.dll"),"The extracted explicit-layer manifest identifies the bundled Vulkan integration");
             bool vkPersistentBlocked=false;try{vulkanFlow.EnableSteam().GetAwaiter().GetResult();}catch(IOException){vkPersistentBlocked=true;}
-            check(vkPersistentBlocked&&vulkanFlow.Store.ReadAll().Count==0&&!File.Exists(Path.Combine(root,"version.dll")),"Vulkan cannot silently install a persistent DirectX proxy or modify global launch settings");
+            check(vkPersistentBlocked&&vulkanFlow.Store.ReadAll().Count(t=>t.State!="Restored")==0&&!File.Exists(Path.Combine(root,"version.dll"))&&!File.Exists(Path.Combine(root,"winmm.dll")),"Persistent Vulkan setup installs nothing when the game imports no supported loader name (or the driver is not the verified build)");
+            string vkBoot=System.Text.Encoding.Unicode.GetString(SteamBootstrap.Build(Path.Combine(Environment.SystemDirectory,"kernel32.dll"),new System.Collections.Generic.Dictionary<string,string>(LaunchProfiles.Values(VulkanRuntime.Profile)){{"VK_LAYER_PATH",@"C:\Game"},{"VK_INSTANCE_LAYERS",VulkanRuntime.LayerName}}));
+            check(vkBoot.Contains("VK_INSTANCE_LAYERS")&&vkBoot.Contains(VulkanRuntime.LayerName)&&vkBoot.Contains("VK_LAYER_PATH")&&vkBoot.Contains("SM86_VK_RELAX_VSYNC"),"The persistent Vulkan configuration ASI sets the layer path, layer name and SM86 values inside the game process");
             var noFileStore=new TrialStore(Path.Combine(root,"external-layer-data"));var noFileSession=new TestSession(noFileStore);
             noFileSession.StartExternal(game,vk.Dll,game,"--fixture");
             check(noFileSession.Current.ExternalLayer&&!noFileSession.Current.Baseline&&noFileSession.Current.Files.Count==0&&noFileSession.Current.State=="Staged","Vulkan preparation journals an external runtime without staging game DLLs");

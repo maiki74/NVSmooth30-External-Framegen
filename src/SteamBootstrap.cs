@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace FramegenLab
@@ -58,7 +59,8 @@ namespace FramegenLab
                 data.Position = iat; d.Write((ulong)(0x2000 + setName)); d.Write((ulong)(0x2000 + loadName));
                 int coreName = Text(data, d, core, true);
                 List<Tuple<int, int>> values = new List<Tuple<int, int>>();
-                foreach (string key in LaunchProfiles.Keys)
+                // Extra keys (Vulkan layer path / name) follow the fixed SM86 set, so DirectX builds stay byte-identical.
+                foreach (string key in LaunchProfiles.Keys.Concat(environment.Keys.Except(LaunchProfiles.Keys)))
                 {
                     string value; environment.TryGetValue(key, out value);
                     int name = Text(data, d, key, true), content = value == null ? -1 : Text(data, d, value, true);

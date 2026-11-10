@@ -10,8 +10,8 @@ using System.Windows.Forms;
 [assembly: AssemblyCompany("maiki74")]
 [assembly: AssemblyProduct("Framegen DLL Tester")]
 [assembly: AssemblyCopyright("Copyright (c) 2026 maiki74")]
-[assembly: AssemblyVersion("0.3.8.0")]
-[assembly: AssemblyFileVersion("0.3.8.0")]
+[assembly: AssemblyVersion("0.3.9.0")]
+[assembly: AssemblyFileVersion("0.3.9.0")]
 
 namespace FramegenLab
 {

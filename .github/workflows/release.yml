@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - 'downloads/FramegenDllTester.exe'
-      - 'docs/RELEASE-0.3.8.md'
+      - 'docs/RELEASE-0.3.9.md'
       - '.github/workflows/release.yml'
       - 'tools/Publish-Release.py'
   workflow_dispatch:
@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
-      - name: Verify packages and publish v0.3.8
+      - name: Verify packages and publish v0.3.9
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 tools/Publish-Release.py --version 0.3.8
+        run: python3 tools/Publish-Release.py --version 0.3.9
